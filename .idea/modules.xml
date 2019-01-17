@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DemoList.iml" filepath="$PROJECT_DIR$/DemoList.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gradledemo/gradledemo.iml" filepath="$PROJECT_DIR$/gradledemo/gradledemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/javalock/javalock.iml" filepath="$PROJECT_DIR$/javalock/javalock.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxdemo/rxdemo.iml" filepath="$PROJECT_DIR$/rxdemo/rxdemo.iml" />
     </modules>

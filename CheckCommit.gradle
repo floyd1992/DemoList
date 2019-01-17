@@ -1,0 +1,37 @@
+ext {
+    gitCommitMessage = this.getGitCommit()
+    buildTime = this.buildTime()
+    gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+    writeChangeLog = this.writeChangeLog(gitCommitMessage)
+}
+
+def getGitCommit() {
+    def gitDir = new File("$rootDir/.git")
+    if (!gitDir.isDirectory()) {
+        return 'non-git-build'
+    }
+//    def cmd = 'git log --pretty=format:%h -2'
+    def cmd = 'git log --pretty=format:"%s , commitId:%h" -1'
+//    def cmd = 'git rev-parse --short HEAD'
+//    def cmd = 'git log --pretty=short -1'
+    def gitCommit = cmd.execute().text.trim()
+    assert !gitCommit.isEmpty()
+    gitCommit
+}
+
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('YYYY-MM-dd-HH-mm')
+    return formattedDate
+}
+
+def writeChangeLog(String commitInfo){
+    File changeLogFile = new File("${rootDir.getPath()}/ChangeLog")
+    println("changeLogFile = ${changeLogFile}")
+    println("${changeLogFile.getText()}")
+    changeLogFile.withOutputStream { os ->
+        os << commitInfo.getBytes("utf-8")
+    }
+    println(changeLogFile.getText())
+    changeLogFile
+}
