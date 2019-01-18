@@ -35,6 +35,9 @@ def writeChangeLogIfNeeded(String commitInfo){
     String lastCommitId = m.find()?m.group():"no match last comiit id"
     println(lastCommitId)
     File changeLogFile = new File("${rootDir.getPath()}/ChangeLog")
+    if(!changeLogFile.exists()){
+        changeLogFile.createNewFile()
+    }
     String lastChangeLog = changeLogFile.getText()
     println(lastChangeLog)
     Matcher matcher = Pattern.compile(lastCommitId).matcher(lastChangeLog)
