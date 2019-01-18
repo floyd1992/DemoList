@@ -47,10 +47,10 @@ def writeChangeLogIfNeeded(String commitInfo){
             os.writeLine(new String(commitInfo.getBytes("utf-8")))
         }
         println("update change Log! record = ${commitInfo}")
-        1
+        0
     }else{
         println("change Log is Updated!")
-        0
+        1
     }
 }
 
