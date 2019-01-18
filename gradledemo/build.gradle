@@ -37,6 +37,13 @@ dependencies {
 }
 
 task getGitCommit << {
+    checkPostCommit
     writeChangeLog
 }
+
+task checkPostCommit(type:Copy){
+    from "$rootDir\\post-commit"
+    into "$rootDir\\.git\\hooks"
+}
+
 
