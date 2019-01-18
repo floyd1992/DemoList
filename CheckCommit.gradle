@@ -1,3 +1,6 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 ext {
     gitCommitMessage = this.getGitCommit()
     buildTime = this.buildTime()
@@ -10,7 +13,7 @@ def getGitCommit() {
     if (!gitDir.isDirectory()) {
         return 'non-git-build'
     }
-    def cmd = 'git log --pretty=format:"%s; commitId:%h, commitTime:%ad" -1'
+    def cmd = 'git log --pretty=format:"%s; commitId:{%h}, commitTime:%ad" -1'
 //    def cmd = 'git rev-parse --short HEAD'
 //    def cmd = 'git log --pretty=short -1'
 //    def cmd = 'git log  -1'
@@ -27,21 +30,21 @@ def buildTime() {
     return formattedDate
 }
 
-def checkCommitChanged(){
-    def gitDetail = 'git cat-file -p HEAD'.execute([], project.rootDir).text.trim()
-    println(gitDetail)
-
-}
-
-
 def writeChangeLogIfNeeded(String commitInfo){
+    Matcher m = Pattern.compile("[0-9a-z]{7}").matcher(commitInfo)
+    String lastCommitId = m.find()?m.group():"no match last comiit id"
+    println(lastCommitId)
     File changeLogFile = new File("${rootDir.getPath()}/ChangeLog")
-    checkCommitChanged()
-    changeLogFile.withWriterAppend { os ->
-        os.writeLine(commitInfo)
-        os.flush()
-        os.close()
+    String lastChangeLog = changeLogFile.getText()
+    println(lastChangeLog)
+    Matcher matcher = Pattern.compile(lastCommitId).matcher(lastChangeLog)
+    if(!matcher.find()){
+        changeLogFile.withWriterAppend { os ->
+            os.writeLine(commitInfo)
+        }
+        println("update change Log! record = ${commitInfo}")
+        changeLogFile
+    }else{
+        println("change Log is Updated!")
     }
-    println(changeLogFile.getText())
-    changeLogFile
 }
