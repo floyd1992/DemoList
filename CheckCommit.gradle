@@ -6,6 +6,7 @@ ext {
     buildTime = this.buildTime()
     gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
     writeChangeLog = this.writeChangeLogIfNeeded(gitCommitMessage)
+    checkCommit = this.checkCommitInternal()
 }
 
 def getGitCommit() {
@@ -43,11 +44,21 @@ def writeChangeLogIfNeeded(String commitInfo){
     Matcher matcher = Pattern.compile(lastCommitId).matcher(lastChangeLog)
     if(!matcher.find()){
         changeLogFile.withWriterAppend { os ->
-            os.writeLine(commitInfo)
+            os.writeLine(new String(commitInfo.getBytes("utf-8")))
         }
         println("update change Log! record = ${commitInfo}")
-        changeLogFile
+        1
     }else{
         println("change Log is Updated!")
+        0
     }
+}
+
+
+task checkCommit << {
+    checkCommitInternal()
+}
+
+def checkCommitInternal(){
+    writeChangeLogIfNeeded(gitCommitMessage)
 }
