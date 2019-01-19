@@ -8,7 +8,7 @@
 # To enable this hook, rename this file to "post-commit".
 SCRIPT_DIR=$(dirname "$0")
 SCRIPT_ABS_PATH=`cd "$SCRIPT_DIR"; pwd`
-$SCRIPT_ABS_PATH/../../gradlew -PuseCommit="true" getGitCommit
+$SCRIPT_ABS_PATH/../../gradlew -PuseCommit="true" recordChangeLog
 if [ $? -eq 0   ]; then
     echo "check commit completed!"
 else
