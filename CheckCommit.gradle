@@ -51,7 +51,15 @@ def writeChangeLogIfNeeded(String commitInfo){
     }
 }
 
+task checkPostCommitFile(type:Copy){
+    from "$rootDir\\post-commit"
+    into "$rootDir\\.git\\hooks"
+}
 
+task recordChangeLog{
+    writeChangeLog
+}
 
-
-
+afterEvaluate {
+    checkPostCommitFile.execute()
+}
