@@ -60,6 +60,6 @@ task recordChangeLog{
     writeChangeLog
 }
 
-afterEvaluate {
-    checkPostCommitFile.execute()
-}
+//afterEvaluate {
+//    checkPostCommitFile.execute()
+//}
