@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'CommitRecorder'
 apply from: "${new File("${rootDir}").getPath()}/CheckCommit.gradle"
 
 android {

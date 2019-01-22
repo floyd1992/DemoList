@@ -1,1 +1,1 @@
-include ':app', ':rxdemo', ':javalock', ':gradledemo'
+include ':app', ':rxdemo', ':javalock', ':gradledemo', ':GradlePlugin'
