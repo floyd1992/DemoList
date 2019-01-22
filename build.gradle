@@ -3,8 +3,8 @@
 buildscript {
     
     repositories {
-        maven { url 'file:///E:/repo/' }
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        maven { url 'file:///F:/repo/' }
         google()
     }
     dependencies {

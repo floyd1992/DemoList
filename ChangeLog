@@ -11,3 +11,4 @@ test commit 333; commitId:{b5cf791}, commitTime:Sat Jan 19 14:45:03 2019 +0800
 test commit ok; commitId:{cd34bbb}, commitTime:Sat Jan 19 16:12:27 2019 +0800
 revise; commitId:{cefd8e8}, commitTime:Sat Jan 19 18:11:01 2019 +0800
 fix; commitId:{806ed5b}, commitTime:Sat Jan 19 18:12:00 2019 +0800
+add plugin demo; commitId:{3c80bbc}, commitTime:Tue Jan 22 22:28:03 2019 +0800
