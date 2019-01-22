@@ -14,6 +14,7 @@ class RecordPlugin implements Plugin<Project>{
             from "$rootDir\\post-commit"
             into "$rootDir\\.git\\hooks"
         }
+        project.tasks["checkPostCommitFile"].execute()
     }
 
 }
